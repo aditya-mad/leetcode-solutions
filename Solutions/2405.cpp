@@ -3,29 +3,16 @@ class Solution
 public:
     int partitionString(string s)
     {
-        int ans = 0;
-        for (int i = 0; i < s.size(); i++)
+        int ans = 1;
+        set<char> memo;
+        for (auto x : s)
         {
-            unordered_map<char, int> memo;
-            while (true)
+            if (memo.find(x) != memo.end())
             {
-                if (memo[s[i]] <= 0)
-                {
-                    memo[s[i]]++;
-                    i++;
-                    if (i >= s.size())
-                    {
-                        ans++;
-                        break;
-                    }
-                }
-                else
-                {
-                    i--;
-                    ans++;
-                    break;
-                }
+                ans++;
+                memo.erase(memo.begin(), memo.end());
             }
+            memo.insert(x);
         }
         return ans;
     }

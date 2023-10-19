@@ -3,20 +3,24 @@ class Solution
 public:
     bool backspaceCompare(string s, string t)
     {
+        stack<char> one, two;
 
-        while (s[0] == '#')
-            s.erase(s.begin());
-        while (t[0] == '#')
-            t.erase(t.begin());
-
-        int one = 0;
         for (auto x : s)
-            if (x == '#')
-                one++;
-
-        while (one--)
         {
-            for (int i = 0; i < one.size();)
+            if (x == '#' && !one.empty())
+                one.pop();
+            else if (x != '#')
+                one.push(x);
         }
+
+        for (auto x : t)
+        {
+            if (x == '#' && !two.empty())
+                two.pop();
+            else if (x != '#')
+                two.push(x);
+        }
+
+        return one == two;
     }
 };

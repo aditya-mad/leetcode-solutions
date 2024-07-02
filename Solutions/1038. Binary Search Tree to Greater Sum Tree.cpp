@@ -6,7 +6,7 @@ public:
     {
         if (root->right)
             bstToGst(root->right);
-        ans = root->val = pre + root->val;
+        ans = root->val = ans + root->val;
         if (root->left)
             bstToGst(root->left);
         return root;
